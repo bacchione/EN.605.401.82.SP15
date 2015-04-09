@@ -1,0 +1,442 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="0"
+            android:gravity="right|center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/second_slot_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_orange_light"
+                android:text="Player 2" />
+
+            <TextView
+                android:id="@+id/third_slot_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_orange_light"
+                android:text="Player 3" />
+
+            <TextView
+                android:id="@+id/fourth_slot_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_orange_light"
+                android:text="Player 4" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dice_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:gravity="center"
+            android:text="6"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_orange_light" />
+
+        <ImageView
+            android:id="@+id/dice_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="left|center_vertical"
+            android:layout_row="0"
+            android:contentDescription="Roll Dice"
+            android:gravity="center"
+            android:src="@drawable/ic_dice" />
+
+        <TextView
+            android:id="@+id/current_player_name"
+            style="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_orange_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:text="Player 1" />
+
+    </GridLayout>
+
+	<GridLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center|center_vertical|center_horizontal"
+	    android:layout_weight="0.83"
+	    android:columnCount="7"
+	    android:paddingTop="20dp" >
+
+		<GridView
+            android:id="@+id/gridView00"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:background="@android:color/holo_red_light"
+            android:numColumns="2" >
+
+        </GridView>
+        
+		<GridView
+		    android:id="@+id/gridView01"
+		    android:layout_width="40dp"
+		    android:layout_height="40dp"
+		    android:layout_column="0"
+		    android:layout_row="1"
+		    android:background="@android:color/darker_gray"
+		    android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView02"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:background="@android:color/holo_blue_light"
+            android:numColumns="2" >
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView03"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:background="@android:color/holo_green_light"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView04"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:background="@android:color/white"
+            android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView05"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:background="@android:color/darker_gray"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView06"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:background="@android:color/holo_green_light"
+            android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView10"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:background="@android:color/darker_gray"
+            android:numColumns="2" >
+
+        </GridView>
+        
+		<GridView
+		    android:id="@+id/gridView20"
+		    android:layout_width="40dp"
+		    android:layout_height="40dp"
+		    android:layout_column="2"
+		    android:layout_row="0"
+		    android:background="@android:color/holo_blue_light"
+		    android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView30"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:background="@android:color/holo_red_light"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView40"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="4"
+            android:layout_row="0"
+            android:background="@android:color/holo_green_light"
+            android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView50"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="5"
+            android:layout_row="0"
+            android:background="@android:color/darker_gray"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView60"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="6"
+            android:layout_row="0"
+            android:background="@android:color/white"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView16"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="1"
+            android:layout_row="6"
+            android:background="@android:color/darker_gray"
+            android:numColumns="2" >
+
+        </GridView>
+        
+		<GridView
+		    android:id="@+id/gridView26"
+		    android:layout_width="40dp"
+		    android:layout_height="40dp"
+		    android:layout_column="2"
+		    android:layout_row="6"
+		    android:background="@android:color/white"
+		    android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView36"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="6"
+            android:background="@android:color/holo_blue_light"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView46"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="4"
+            android:layout_row="6"
+            android:background="@android:color/holo_red_light"
+            android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView56"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="5"
+            android:layout_row="6"
+            android:background="@android:color/darker_gray"
+            android:numColumns="2" >
+
+        </GridView>
+        
+		<GridView
+		    android:id="@+id/gridView61"
+		    android:layout_width="40dp"
+		    android:layout_height="40dp"
+		    android:layout_column="6"
+		    android:layout_row="1"
+		    android:background="@android:color/darker_gray"
+		    android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView62"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="6"
+            android:layout_row="2"
+            android:background="@android:color/holo_green_light"
+            android:numColumns="2" >
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView63"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="6"
+            android:layout_row="3"
+            android:background="@android:color/white"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView64"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="6"
+            android:layout_row="4"
+            android:background="@android:color/holo_red_light"
+            android:numColumns="2" >
+
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView65"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="6"
+            android:layout_row="5"
+            android:background="@android:color/darker_gray"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView13"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:background="@android:color/holo_red_light"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView23"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:background="@android:color/holo_blue_light"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView33"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="3"
+            android:background="@android:color/holo_purple"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView43"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="4"
+            android:layout_row="3"
+            android:background="@android:color/holo_red_light"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView53"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="5"
+            android:layout_row="3"
+            android:background="@android:color/holo_blue_light"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView31"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:background="@android:color/white"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView32"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:background="@android:color/holo_green_light"
+            android:numColumns="2" >
+
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView34"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="4"
+            android:background="@android:color/white"
+            android:numColumns="2" >
+        </GridView>
+        
+        <GridView
+            android:id="@+id/gridView35"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="3"
+            android:layout_row="5"
+            android:background="@android:color/holo_green_light"
+            android:numColumns="2" >
+        </GridView>
+
+        <GridView
+            android:id="@+id/gridView66"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_column="6"
+            android:layout_row="6"
+            android:background="@android:color/holo_blue_light"
+            android:numColumns="2" >
+        </GridView>
+        
+    </GridLayout>
+
+</LinearLayout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_row="0"
+            android:text="Player 1:" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/editTextPlayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_weight="1"
+            android:ems="10" />
+
+        <ImageView
+            android:id="@+id/dice_imageView_player_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Roll Dice"
+            android:gravity="center"
+            android:src="@drawable/ic_dice" />
+
+        <TextView
+            android:id="@+id/dice_result_player_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingEnd="10sp"
+            android:paddingStart="10sp"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="20sp" />
+    </LinearLayout>
+    
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:text="Player 2:" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/editTextPlayer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+			android:layout_weight="1"
+            android:ems="10" />
+
+        <ImageView
+            android:id="@+id/dice_imageView_player_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Roll Dice"
+            android:gravity="center"
+            android:src="@drawable/ic_dice" />
+
+        <TextView
+            android:id="@+id/dice_result_player_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingEnd="10sp"
+            android:paddingStart="10sp"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="20sp" />
+    </LinearLayout>
+    
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:text="Player 3:" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/editTextPlayer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|top"
+                    android:layout_weight="1"
+                    android:ems="10" />
+
+                <ImageView
+                    android:id="@+id/dice_imageView_player_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Roll Dice"
+                    android:gravity="center"
+                    android:src="@drawable/ic_dice" />
+
+        <TextView
+            android:id="@+id/dice_result_player_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingEnd="10sp"
+            android:paddingStart="10sp"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="20sp" />
+    </LinearLayout>
+    
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:text="Player 4:" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/editTextPlayer4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|top"
+                    android:layout_weight="1"
+                    android:ems="10" />
+
+                <ImageView
+                    android:id="@+id/dice_imageView_player_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Roll Dice"
+                    android:gravity="center"
+                    android:src="@drawable/ic_dice" />
+
+        <TextView
+            android:id="@+id/dice_result_player_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingEnd="10sp"
+            android:paddingStart="10sp"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

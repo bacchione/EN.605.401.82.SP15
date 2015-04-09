@@ -2,10 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.bluebarracudas.trivialpursuit.MainActivity" >
 
+   <item
+        android:id="@+id/menu_new_game"
+        android:showAsAction="never"
+        android:title="New Game"/>
+    
+   <item
+        android:id="@+id/menu_question_database"
+        android:showAsAction="never"
+        android:title="Question Database"/>
+        
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-
+    
+       <item
+        android:id="@+id/menu_save"
+        android:showAsAction="never"
+        android:title="Save/Close"/>
+    
 </menu>
