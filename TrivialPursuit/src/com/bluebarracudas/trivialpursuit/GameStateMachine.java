@@ -21,12 +21,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GameStateMachine extends Activity implements OnClickListener {
+public class GameStateMachine extends Activity implements OnClickListener, OnItemClickListener {
 
 	public final ArrayList<Category> categoryDatabase = new ArrayList<Category>();
 	public final ArrayList<Player> playerDatabase = new ArrayList<Player>();
@@ -152,7 +156,6 @@ public class GameStateMachine extends Activity implements OnClickListener {
 	private TextView secondPlayerSlot;
 	private TextView thirdPlayerSlot;
 	private TextView fourthPlayerSlot;
-	//private View boardGameView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -166,8 +169,10 @@ public class GameStateMachine extends Activity implements OnClickListener {
 		secondPlayerSlot = (TextView) findViewById(R.id.second_slot_player_name);
 		thirdPlayerSlot = (TextView) findViewById(R.id.third_slot_player_name);
 		fourthPlayerSlot = (TextView) findViewById(R.id.fourth_slot_player_name);
+
 		dice.setVisibility(View.INVISIBLE);
 		registerReceiver(mCreatePlayersReceiver, new IntentFilter(Constants.ACTION_GAME_STATE_CHANGE));
+		
 		this.continueGame(GameState.STARTING_NEW_GAME);
 	}
 	
@@ -192,11 +197,49 @@ public class GameStateMachine extends Activity implements OnClickListener {
 			
 			switch(gameState){
 			case CREATE_PLAYERS:
+				
 				ArrayList<Player> players = (ArrayList<Player>) intent.getSerializableExtra(Constants.NEW_PLAYERS_TAG);
 				playerDatabase.clear();
 				
 				for(int i = 0; i < players.size(); i++){
 					playerDatabase.add(players.get(i));
+				}
+				
+				List<BoardPosition> positions = BoardPosition.getValues();
+				ImageView imageview;
+				for(int i = 0; i < positions.size(); i++){
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(0, 0));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(0, 1));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(0, 2));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(0, 3));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(1, 0));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(1, 1));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(1, 2));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(1, 3));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(2, 0));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(2, 1));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(2, 2));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(2, 3));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(3, 0));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(3, 1));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(3, 2));
+					imageview.setVisibility(View.INVISIBLE);
+					imageview = (ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(3, 3));
+					imageview.setVisibility(View.INVISIBLE);
 				}
 				
 				nextGameState = GameState.ROLL_DICE;
@@ -209,6 +252,35 @@ public class GameStateMachine extends Activity implements OnClickListener {
 	};
 	
 	public void updatePlayerStatus(){
+		for(int i = 0; i < playerDatabase.size(); i++){
+			GridLayout layout = (GridLayout) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryIdentifier(i));
+			Player player = playerDatabase.get(i);
+			boolean[] arrays = player.getCategoryArray();
+			
+			ImageView imageview;
+			if(arrays[0]){
+				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 0));
+				imageview.setVisibility(View.VISIBLE);
+			}
+				
+			if(arrays[1]){
+				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 1));
+				imageview.setVisibility(View.VISIBLE);
+			}
+			
+			if(arrays[2]){
+				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 2));
+				imageview.setVisibility(View.VISIBLE);
+			}
+			
+			if(arrays[3]){
+				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 3));
+				imageview.setVisibility(View.VISIBLE);
+			}
+			
+			layout.setVisibility(View.VISIBLE);
+		}
+		
 		if(playerDatabase.size() >= 1)
 			currentPlayerSlot.setText(playerDatabase.get(0).getName());
 		
@@ -243,7 +315,7 @@ public class GameStateMachine extends Activity implements OnClickListener {
 				for (int x = 0; x < boardPositions.size(); x++){
 					if(positions.get(i).getX() == boardPositions.get(x).getPosition().getX() &&
 							positions.get(i).getY() == boardPositions.get(x).getPosition().getY()){
-						GridView gridView = (GridView) findViewById(boardPositions.get(x).getIdentifier());
+						GridLayout gridView = (GridLayout) findViewById(boardPositions.get(x).getPositionIdentifier());
 						gridView.setBackgroundColor(Color.YELLOW);
 					}
 				}
@@ -257,6 +329,10 @@ public class GameStateMachine extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		if(v.getId() == BoardPosition.COORDINATES_3_3.getPositionIdentifier()){
+			int m = 0;
+			m++;
+		}
 		switch(v.getId()){
 		case R.id.dice_imageView:
 			rollResult.setText(String.valueOf(Utils.generateRandomNumber()));
@@ -267,6 +343,16 @@ public class GameStateMachine extends Activity implements OnClickListener {
 			//DialogAskQuestion dialog = new DialogAskQuestion();
 			//dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
 			return;
+		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		if(view.getId() == BoardPosition.COORDINATES_3_3.getPositionIdentifier()){
+			int m = 0;
+			m++;
 		}
 	}
 }
