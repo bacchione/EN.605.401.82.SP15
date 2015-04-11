@@ -76,7 +76,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -134,7 +134,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 2;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -192,7 +192,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 3;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -250,7 +250,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -308,7 +308,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -366,7 +366,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 3;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -424,7 +424,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -482,7 +482,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 2;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -598,7 +598,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 3;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -656,7 +656,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -714,7 +714,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -772,7 +772,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -830,7 +830,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -888,7 +888,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 2;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1004,7 +1004,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1062,7 +1062,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1120,7 +1120,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 3;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1178,7 +1178,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1294,7 +1294,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1410,7 +1410,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 2;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1468,7 +1468,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return -1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1584,7 +1584,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 2;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1642,7 +1642,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1700,7 +1700,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 3;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1758,7 +1758,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 1;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1816,7 +1816,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 3;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){
@@ -1874,7 +1874,7 @@ public enum BoardPosition {
 		}
 		@Override
 		public int getCategoryIndex(){
-			return 0;
+			return 2;
 		}
 		@Override
 		public int getTokenCategoryIdentifier(int token){

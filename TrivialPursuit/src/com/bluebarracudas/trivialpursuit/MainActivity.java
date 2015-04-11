@@ -51,6 +51,7 @@ public class MainActivity extends Activity {
 		case R.id.menu_new_game:
 			// open new game question dialog screen to start game
 			Intent intents = new Intent(this, GameStateMachine.class);
+			
 			startActivity(intents);
 			return true;
 		case R.id.menu_question_database:

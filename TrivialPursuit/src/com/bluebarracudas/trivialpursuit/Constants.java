@@ -17,4 +17,5 @@ public interface Constants {
 	public static final String ACTION_ADD_NEW_PLAYERS = PACKAGE + "ACTION_ADD_NEW_PLAYERS";
 	public static final String ACTION_GAME_STATE_CHANGE = PACKAGE + "ACTION_GAME_STATE_CHANGE";
 	public static final String GAME_STATE_TAG = "GAME_STATE_TAG";
+	public static final int MAX_NUMBER_OF_PLAYERS = 4;
 }

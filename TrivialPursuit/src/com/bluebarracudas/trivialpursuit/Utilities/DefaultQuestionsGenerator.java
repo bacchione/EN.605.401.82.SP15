@@ -23,7 +23,7 @@ public final class DefaultQuestionsGenerator {
 			questionArray
 					.add(new Question(
 							categoryName,
-							"Who was the first person to sign the Declaration of Independance?",
+							"Who was the first person to sign the Declaration of Independence?",
 							"John Hancock"));
 
 			questionArray
@@ -46,7 +46,7 @@ public final class DefaultQuestionsGenerator {
 			questionArray
 			.add(new Question(
 					categoryName,
-					"Who was the first person to sign the Declaration of Independance?",
+					"Who was the first person to sign the Declaration of Independence?",
 					"John Hancock"));
 
 			questionArray
@@ -67,7 +67,7 @@ public final class DefaultQuestionsGenerator {
 			questionArray
 			.add(new Question(
 					categoryName,
-					"Who was the first person to sign the Declaration of Independance?",
+					"Who was the first person to sign the Declaration of Independence?",
 					"John Hancock"));
 
 			questionArray
@@ -88,7 +88,7 @@ public final class DefaultQuestionsGenerator {
 			questionArray
 			.add(new Question(
 					categoryName,
-					"Who was the first person to sign the Declaration of Independance?",
+					"Who was the first person to sign the Declaration of Independence?",
 					"John Hancock"));
 
 			questionArray
