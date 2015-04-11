@@ -42,6 +42,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 
 	public final ArrayList<Category> categoryDatabase = new ArrayList<Category>();
 	public final ArrayList<Player> playerDatabase = new ArrayList<Player>();
+	public int currentPlayerIndex = 0;
 	
 	public enum GameState{
 		NOT_STARTED{
@@ -262,10 +263,491 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(((ColorDrawable)v.getBackground()).getColor() == Color.YELLOW){
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_0.getTokenCategoryIdentifier(currentPlayerIndex))).getBackground()).getColor() == Color.YELLOW){
 					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
 					//move current player ones token to that spot
-					setPlayerToken(0, BoardPosition.COORDINATES_0_0);
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_0);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout10.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_1_0.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_1_0);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout20.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_2_0.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_2_0);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout30.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_0.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_0);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout40.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_4_0.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_4_0);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout50.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_5_0.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_5_0);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout60.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_0.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_0);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout01.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_1.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_1);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout02.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_2.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_2);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout03.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_3.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_3);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout04.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_4.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_4);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout05.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_5.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_5);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout06.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_0_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_0_6);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout61.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_1.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_1);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout62.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_2.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_2);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout63.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_3.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_3);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout64.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_4.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_4);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout65.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_5.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_5);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout66.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_6_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_6_6);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout16.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_1_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_1_6);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout26.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_2_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_2_6);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout36.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_6);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout46.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_4_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_4_6);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout56.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_5_6.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_5_6);
+					continueGame(GameState.ROLL_DICE);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout31.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_1.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_1);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout32.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_2.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_2);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout33.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_3.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_3);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout34.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_4.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_4);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout35.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_3_5.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_3_5);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout13.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_1_3.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_1_3);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout23.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_2_3.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_2_3);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout43.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_4_3.getTokenCategoryIdentifier(currentPlayerIndex))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_4_3);
+					continueGame(GameState.ASK_QUESTION);
+					//move the person's token to this section and ask question
+				}
+			}
+		});
+		
+		gridLayout53.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(((ColorDrawable)((GridLayout) findViewById(BoardPosition.COORDINATES_5_3.getTokenCategoryIdentifier(0))).getBackground()).getColor() == Color.YELLOW){
+					Toast.makeText(getApplicationContext(), "Selected move", Toast.LENGTH_SHORT).show();
+					//move current player ones token to that spot
+					removePlayerTokens(currentPlayerIndex);
+					setPlayerToken(currentPlayerIndex, BoardPosition.COORDINATES_5_3);
 					continueGame(GameState.ASK_QUESTION);
 					//move the person's token to this section and ask question
 				}
@@ -280,7 +762,6 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		unregisterReceiver(mCreatePlayersReceiver);
 	}
@@ -329,15 +810,17 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	public void setPlayerToken(int playerIndex, BoardPosition position){
 		List<BoardPosition> positions = BoardPosition.getValues();
 		playerDatabase.get(playerIndex).setPosition(position);
+		boolean[] categoryArray = playerDatabase.get(playerIndex).getCategoryArray();
 		
-		for(int i = 0; i < positions.size(); i++){
-			if(playerDatabase.get(playerIndex).getPosition().getPosition().getX() == positions.get(i).getPosition().getX() &&
-					playerDatabase.get(playerIndex).getPosition().getPosition().getY() == positions.get(i).getPosition().getY()){
-				for(int x = 0; x < Constants.MAX_NUMBER_OF_CATEGORIES; x++){
-					((ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(x, playerIndex))).setVisibility(View.VISIBLE);
-				}
+		((GridLayout) findViewById(position.getTokenCategoryIdentifier(playerIndex))).setVisibility(View.VISIBLE);
+		((GridLayout) findViewById(position.getTokenCategoryIdentifier(playerIndex))).setBackgroundColor(Color.BLACK);
+		
+		for(int x = 0; x < Constants.MAX_NUMBER_OF_CATEGORIES; x++){
+			if(categoryArray[x]){
+				((ImageView) findViewById(position.getTokenCategoryImageViewIdentifier(playerIndex, x))).setVisibility(View.VISIBLE);
+			} else{
+				((ImageView) findViewById(position.getTokenCategoryImageViewIdentifier(playerIndex, x))).setVisibility(View.INVISIBLE);
 			}
-			updatePositionColors();
 		}
 	}
 	
@@ -350,25 +833,18 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	
 	public void removePlayerTokens(int playerIndex){
 		List<BoardPosition> positions = BoardPosition.getValues();
-		for(int i = 0; i < positions.size(); i++){
+		
+		List<BoardPosition> boardPositions = BoardPosition.getValues();
+		for(int i = 0; i < boardPositions.size(); i++){
+			((GridLayout) findViewById(boardPositions.get(i).getTokenCategoryIdentifier(playerIndex))).setVisibility(View.INVISIBLE);
+			
 			for(int x = 0; x < Constants.MAX_NUMBER_OF_CATEGORIES; x++){
-				((ImageView) findViewById(positions.get(i).getTokenCategoryImageViewIdentifier(x, playerIndex))).setVisibility(View.INVISIBLE);
-			}
-			updatePositionColors();
-		}
-	}
-	
-	public void updatePositionColors(){
-		List<BoardPosition> positions = BoardPosition.getValues();
-		for(int i = 0; i < positions.size(); i++){
-			// Set the board positions to the color of the categories
-			int categoryIndex = positions.get(i).getCategoryIndex();
-			// Index equals -1 if the color doesn't change because it's a roll again or center hub position
-			if(categoryIndex != -1){
-				int categoryColor = categoryDatabase.get(categoryIndex).getColor();
-				((GridLayout) findViewById(positions.get(i).getPositionIdentifier())).setBackgroundColor(categoryColor);
+				((ImageView) findViewById(boardPositions.get(i).getTokenCategoryImageViewIdentifier(playerIndex, x))).setVisibility(View.INVISIBLE);
 			}
 		}
+		
+		//remove all grid layouts on the board for that player
+		
 	}
 	
 	public boolean isGameOver(){
@@ -383,24 +859,13 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			boolean[] arrays = player.getCategoryArray();
 			
 			ImageView imageview;
-			if(arrays[0]){
-				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 0));
-				imageview.setVisibility(View.VISIBLE);
-			}
-				
-			if(arrays[1]){
-				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 1));
-				imageview.setVisibility(View.VISIBLE);
-			}
-			
-			if(arrays[2]){
-				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 2));
-				imageview.setVisibility(View.VISIBLE);
-			}
-			
-			if(arrays[3]){
-				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, 3));
-				imageview.setVisibility(View.VISIBLE);
+			for(int x = 0; x < Constants.MAX_NUMBER_OF_CATEGORIES; x++){
+				imageview = (ImageView) findViewById(playerDatabase.get(i).getPosition().getTokenCategoryImageViewIdentifier(i, x));
+				if(arrays[x]){
+					imageview.setVisibility(View.VISIBLE);
+				} else{
+					imageview.setVisibility(View.INVISIBLE);
+				}
 			}
 			
 			layout.setVisibility(View.VISIBLE);
@@ -442,18 +907,29 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 		case ROLL_DICE:
 			dice.setVisibility(View.VISIBLE);
 			rollResult.setText("?");
-			Toast.makeText(getApplicationContext(), playerDatabase.get(0).getName() + ": Roll the dice!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), playerDatabase.get(currentPlayerIndex).getName() + ": Roll the dice!", Toast.LENGTH_SHORT).show();
 			break;
 		case HIGHLIGHT_MOVE_OPTIONS:
 			List<BoardPosition> boardPositions = BoardPosition.getValues();
-			ArrayList<Position> positions = Utils.getValidMoves(Integer.parseInt(rollResult.getText().toString()), playerDatabase.get(0).getPosition().getPosition());
+			ArrayList<Position> positions = Utils.getValidMoves(Integer.parseInt(rollResult.getText().toString()), playerDatabase.get(currentPlayerIndex).getPosition().getPosition());
+			boolean[] categoryArray = playerDatabase.get(currentPlayerIndex).getCategoryArray();
+			
 			for (int i = 0; i < positions.size(); i++)
 			{
 				for (int x = 0; x < boardPositions.size(); x++){
 					if(positions.get(i).getX() == boardPositions.get(x).getPosition().getX() &&
 							positions.get(i).getY() == boardPositions.get(x).getPosition().getY()){
-						GridLayout gridView = (GridLayout) findViewById(boardPositions.get(x).getPositionIdentifier());
+						GridLayout gridView = (GridLayout) findViewById(boardPositions.get(x).getTokenCategoryIdentifier(currentPlayerIndex));
 						gridView.setBackgroundColor(Color.YELLOW);
+						gridView.setVisibility(View.VISIBLE);
+					}
+					
+					for(int y = 0; y < Constants.MAX_NUMBER_OF_CATEGORIES; y++){
+						if(categoryArray[y]){
+							((ImageView) findViewById(boardPositions.get(x).getTokenCategoryImageViewIdentifier(currentPlayerIndex, y))).setVisibility(View.VISIBLE);
+						} else{
+							((ImageView) findViewById(boardPositions.get(x).getTokenCategoryImageViewIdentifier(currentPlayerIndex, y))).setVisibility(View.INVISIBLE);
+						}
 					}
 				}
 			}
@@ -470,17 +946,13 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.dice_imageView:
 			rollResult.setText(String.valueOf(Utils.generateRandomNumber()));
-			//rollResult.setText("6");
+			rollResult.setText("5");
 			dice.setVisibility(View.INVISIBLE);
+			
 			continueGame(GameState.HIGHLIGHT_MOVE_OPTIONS);
-			// show the places to move and the use selects one before asking the question
-			// send back to get next state
-			//DialogAskQuestion dialog = new DialogAskQuestion();
-			//dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
 			return;
 		}
 	}
@@ -488,7 +960,6 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		// TODO Auto-generated method stub
 		if(view.getId() == BoardPosition.COORDINATES_3_3.getPositionIdentifier()){
 			int m = 0;
 			m++;
