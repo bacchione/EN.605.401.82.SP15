@@ -16,6 +16,9 @@ public interface Constants {
 	public static final String NEW_PLAYERS_TAG = "NEW_PLAYERS_TAG";
 	public static final String ACTION_ADD_NEW_PLAYERS = PACKAGE + "ACTION_ADD_NEW_PLAYERS";
 	public static final String ACTION_GAME_STATE_CHANGE = PACKAGE + "ACTION_GAME_STATE_CHANGE";
+	public static final String CHOSEN_QUESTION_TAG = "CHOSEN_QUESTION_TAG";
 	public static final String GAME_STATE_TAG = "GAME_STATE_TAG";
+	public static final String ASK_QUESTION_RESULT = "ASK_QUESTION_RESULT";
 	public static final int MAX_NUMBER_OF_PLAYERS = 4;
+	public static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
 }

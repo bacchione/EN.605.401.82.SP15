@@ -73,7 +73,6 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 		case DialogInterface.BUTTON_POSITIVE:
 			mQuestion.setQuestion(mEditTextQuestion.getText().toString());
 			int answerIndex = Utils.generateRandomNumber(0, 3);
-
 			mQuestion.setAnswer(mEditTextAnswer.getText().toString());
 			
 			final Intent intent = new Intent(Constants.UPDATE_QUESTION_TAG);

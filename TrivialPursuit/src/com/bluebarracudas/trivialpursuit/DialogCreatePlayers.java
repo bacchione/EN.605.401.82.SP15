@@ -272,6 +272,7 @@ public class DialogCreatePlayers extends ADialogAlert implements OnClickListener
 				if(playerList.size() < 2)
 				{
 					Toast.makeText(getActivity(), "Not enough players were set.", Toast.LENGTH_SHORT).show();
+					getActivity().finish();
 					return;
 				}
 				
@@ -292,8 +293,7 @@ public class DialogCreatePlayers extends ADialogAlert implements OnClickListener
 				dismiss();
 			}
 		} );
-		builder.setNegativeButton(android.R.string.cancel, null);
-
+		
 		return builder;
 	}
 

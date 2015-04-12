@@ -41,9 +41,8 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-//		final Bundle bundle = getArguments();
-	//	mQuestion = (Question) bundle.getParcelable(Constants.QUESTION_TAG);
-		mQuestion = DefaultQuestionsGenerator.addDefaultQuestionsGenerator().get(0).getQuestionArray().get(0);
+		final Bundle bundle = getArguments();
+	    mQuestion = (Question) bundle.getParcelable(Constants.CHOSEN_QUESTION_TAG);
 	}
 
 	@SuppressLint("InflateParams")
@@ -60,11 +59,11 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 		
 		mProgress = (ProgressBar) view.findViewById(R.id.progressBarTimer);
 		mProgress.setProgress(i);
-		   mCountDownTimer=new CountDownTimer(30000,300) {
+		   mCountDownTimer=new CountDownTimer(20000,200) {
 
 		        @Override
 		        public void onTick(long millisUntilFinished) {
-		            Log.v("Log_tag", "Tick of Progress"+ i + millisUntilFinished);
+		            //Log.v("Log_tag", "Tick of Progress"+ i + millisUntilFinished);
 		            i--;
 		            mProgress.setProgress(i);
 
@@ -75,6 +74,11 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 		        //Do what you want 
 		            i--;
 		            mProgress.setProgress(i);
+					final Intent intent = new Intent(Constants.ACTION_GAME_STATE_CHANGE);
+					intent.putExtra(Constants.GAME_STATE_TAG, GameStateMachine.GameState.ANSWERED_QUESTION.getStateId());
+					intent.putExtra(Constants.ASK_QUESTION_RESULT, false);
+					getActivity().sendBroadcast(intent);
+					dismiss();
 		            // return from result as wrong
 		        }
 		    };
@@ -102,12 +106,19 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch(which){
 		case DialogInterface.BUTTON_POSITIVE:
+			mCountDownTimer.cancel();
+			final Intent intent = new Intent(Constants.ACTION_GAME_STATE_CHANGE);
+			intent.putExtra(Constants.GAME_STATE_TAG, GameStateMachine.GameState.ANSWERED_QUESTION.getStateId());
+
 			if(mEditTextAnswer.getText().toString().equals(mQuestion.getAnswer())){
 				// return true
+				intent.putExtra(Constants.ASK_QUESTION_RESULT, true);
 			} else {
 				// return wrong
+				intent.putExtra(Constants.ASK_QUESTION_RESULT, false);
 			}
 			
+			getActivity().sendBroadcast(intent);
 			break;
 		}
 	}

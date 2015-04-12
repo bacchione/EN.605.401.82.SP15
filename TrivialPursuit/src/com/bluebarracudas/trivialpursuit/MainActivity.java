@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
 			// open question database fragment
 			Intent intent = new Intent(this, CategoryActivity.class);
 			intent.putExtra(Constants.CATEGORY_DATABASE_TAG, categoryDatabase.size());
+			intent.putExtra(Constants.CHOOSE_CATEGORY, false);
 			for(int i = 0; i < categoryDatabase.size(); i++){
 				intent.putExtra(String.valueOf(i), categoryDatabase.get(i));
 			}

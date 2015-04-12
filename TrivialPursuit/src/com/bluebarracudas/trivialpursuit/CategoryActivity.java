@@ -27,7 +27,6 @@ public class CategoryActivity extends Activity implements OnClickListener,
 	private CategoryAdapter mCategoryAdapter;
 	private ListView mCategoryListView;
 	private ArrayList<Category> mCategories = new ArrayList<Category>();
-
 	public static final String TAG = "CategoryActvity.TAG";
 
 	@Override
@@ -62,7 +61,6 @@ public class CategoryActivity extends Activity implements OnClickListener,
 		// mCategories.get(position).getQuestionArray());
 		intent.putExtra(Constants.QUESTION_TAG, mCategories.get(position));
 		startActivity(intent);
-
 	}
 
 	@Override

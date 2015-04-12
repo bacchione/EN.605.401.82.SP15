@@ -39,8 +39,8 @@ public final class DefaultQuestionsGenerator {
 		}
 
 		{
-			String categoryName = "Events";
-			int categoryColor = Color.WHITE;
+			String categoryName = "Places";
+			int categoryColor = Color.BLUE;
 			final ArrayList<Question> questionArray = new ArrayList<Question>();
 
 			questionArray
@@ -58,10 +58,10 @@ public final class DefaultQuestionsGenerator {
 			categoryList.add(new Category(categoryName, categoryColor,
 					questionArray));
 		}
-
+		
 		{
-			String categoryName = "Places";
-			int categoryColor = Color.BLUE;
+			String categoryName = "Events";
+			int categoryColor = Color.WHITE;
 			final ArrayList<Question> questionArray = new ArrayList<Question>();
 
 			questionArray
