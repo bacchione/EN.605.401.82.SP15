@@ -3,6 +3,7 @@ package com.bluebarracudas.trivialpursuit;
 import java.util.ArrayList;
 
 import com.bluebarracudas.trivialpursuit.Classes.Category;
+import com.bluebarracudas.trivialpursuit.Classes.GameInformation;
 import com.bluebarracudas.trivialpursuit.Classes.Player;
 import com.bluebarracudas.trivialpursuit.Utilities.DefaultQuestionsGenerator;
 
@@ -38,6 +39,20 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	public GameInformation readDatabaseInformation(){
+		// Not implemented
+		return new GameInformation(categoryDatabase, playerDatabase, 0);
+	}
+	
+	public void writeDatabaseInformation(GameInformation gameInformation){
+		// Not implemented
+	}
+	
+	public void saveAndClose(){
+		finish();
+		System.exit(0);
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -46,8 +61,6 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 
 		switch (item.getItemId()) {
-		case R.id.action_settings:
-			return true;
 		case R.id.menu_new_game:
 			// open new game question dialog screen to start game
 			Intent intents = new Intent(this, GameStateMachine.class);
@@ -66,6 +79,7 @@ public class MainActivity extends Activity {
 			startActivity(intent);
 			return true;
 		case R.id.menu_save:
+			saveAndClose();
 			/*String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 			CSVWriter writer = new CSVWriter(new FileWriter(csv));
 

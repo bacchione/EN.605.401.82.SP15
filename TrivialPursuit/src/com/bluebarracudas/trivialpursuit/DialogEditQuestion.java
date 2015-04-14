@@ -50,11 +50,16 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 		mEditTextQuestion = (EditText) view.findViewById(R.id.question_editText);
 		mEditTextAnswer = (EditText) view.findViewById(R.id.answer_editText);
 
-		mEditTextQuestion.setText(mQuestion.getQuestion());
-		mEditTextAnswer.setText(mQuestion.getAnswer());
+		if(mQuestion.getQuestion() != null){
+			mEditTextQuestion.setText(mQuestion.getQuestion());
+			mEditTextAnswer.setText(mQuestion.getAnswer());
+			builder.setTitle("Edit Question");
+		} else {
+			builder.setTitle("Add Question");
+		}
 
 		builder.setView(view);
-		builder.setTitle("Edit Question");
+		
 		builder.setPositiveButton(android.R.string.ok, this);
 		builder.setNegativeButton(android.R.string.cancel, null);
 
@@ -71,13 +76,15 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 	public void onClick(DialogInterface dialog, int which) {
 		switch (which) {
 		case DialogInterface.BUTTON_POSITIVE:
+		
 			mQuestion.setQuestion(mEditTextQuestion.getText().toString());
-			int answerIndex = Utils.generateRandomNumber(0, 3);
 			mQuestion.setAnswer(mEditTextAnswer.getText().toString());
 			
-			final Intent intent = new Intent(Constants.UPDATE_QUESTION_TAG);
-			intent.putExtra(Constants.QUESTION_TAG, mQuestion);
-			getActivity().sendBroadcast(intent);
+			if(!mEditTextQuestion.getText().toString().matches("") && !mEditTextAnswer.getText().toString().matches("")){
+				final Intent intent = new Intent(Constants.UPDATE_QUESTION_TAG);
+				intent.putExtra(Constants.QUESTION_TAG, mQuestion);
+				getActivity().sendBroadcast(intent);
+			}
 			break;
 		}
 		dismiss();

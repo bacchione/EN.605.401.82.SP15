@@ -20,8 +20,7 @@ public final class DefaultQuestionsGenerator {
 			int categoryColor = Color.RED;
 			final ArrayList<Question> questionArray = new ArrayList<Question>();
 
-			questionArray
-					.add(new Question(
+			questionArray.add(new Question(
 							categoryName,
 							"Who was the first person to sign the Declaration of Independence?",
 							"John Hancock"));

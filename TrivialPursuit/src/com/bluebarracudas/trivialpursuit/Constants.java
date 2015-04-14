@@ -7,8 +7,7 @@ package com.bluebarracudas.trivialpursuit;
 public interface Constants {
 	public static final String PACKAGE = "com.bluebarracudas.trivialpursuit.";
 	public static final int MAX_NUMBER_OF_CATEGORIES = 4;
-	public static final int MAX_NUMBER_OF_ANSWERS_PER_QUESTION = 4;
-	public static final int MINIUM_DICE_VALUE = 1;
+	public static final int MINIMUM_DICE_VALUE = 1;
 	public static final int MAXIMUM_DICE_VALUE = 6;
 	public static final String CATEGORY_DATABASE_TAG = "CATEGORY_DATABASE_TAG";
 	public static final String QUESTION_TAG = "QUESTION_TAG";

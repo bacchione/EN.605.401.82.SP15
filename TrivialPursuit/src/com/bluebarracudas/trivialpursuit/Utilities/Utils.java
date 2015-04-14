@@ -9,7 +9,7 @@ import com.bluebarracudas.trivialpursuit.Classes.Position;
 
 public final class Utils {
 	public final static int generateRandomNumber() {
-		return Constants.MINIUM_DICE_VALUE
+		return Constants.MINIMUM_DICE_VALUE
 				+ (int) (Math.random() * Constants.MAXIMUM_DICE_VALUE);
 	}
 	public final static int generateRandomNumber(int min, int max) {

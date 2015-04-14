@@ -62,10 +62,6 @@ public class Category implements Parcelable {
 			int color = in.readInt();
 			ArrayList<Question> questionArray = new ArrayList<Question>();
 			in.readTypedList(questionArray, Question.CREATOR);
-			// in.readList(questionArray, getClass().getClassLoader());
-			// final ArrayList<Question> questionArray =
-			// in.readArrayList(getClass().getClassLoader());
-
 			return new Category(name, color, questionArray);
 		}
 

@@ -69,20 +69,20 @@ public class CategoryAdapter extends BaseAdapter implements
 		}
 
 		holder.textViewCategoryName.setText(category.getName());
-		holder.colorSelectionSpinner.setBackgroundColor(category.getColor());
+		holder.colorSelection.setBackgroundColor(category.getColor());
 
 		return convertView;
 	}
 
 	private static final class ViewHolder {
-		final Spinner colorSelectionSpinner;
+		final ImageView colorSelection;
 		final TextView textViewCategoryName;
 		final LinearLayout categoryLayout;
 
 		public ViewHolder(View view) {
 			textViewCategoryName = (TextView) view
 					.findViewById(R.id.category_item_name);
-			colorSelectionSpinner = (Spinner) view
+			colorSelection = (ImageView) view
 					.findViewById(R.id.category_item_color);
 			categoryLayout = (LinearLayout) view
 					.findViewById(R.id.category_linearLayout);

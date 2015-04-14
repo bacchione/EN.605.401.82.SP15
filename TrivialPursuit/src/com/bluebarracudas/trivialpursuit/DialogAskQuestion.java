@@ -110,7 +110,7 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 			final Intent intent = new Intent(Constants.ACTION_GAME_STATE_CHANGE);
 			intent.putExtra(Constants.GAME_STATE_TAG, GameStateMachine.GameState.ANSWERED_QUESTION.getStateId());
 
-			if(mEditTextAnswer.getText().toString().equals(mQuestion.getAnswer())){
+			if(mEditTextAnswer.getText().toString().equalsIgnoreCase(mQuestion.getAnswer())){
 				// return true
 				intent.putExtra(Constants.ASK_QUESTION_RESULT, true);
 			} else {

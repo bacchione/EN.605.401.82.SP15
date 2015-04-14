@@ -41,7 +41,6 @@ public class Player implements Parcelable {
 
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(name);
-		//out.writeInt(Constants.MAX_NUMBER_OF_CATEGORIES);
 		out.writeBooleanArray(categoryArray);
 		out.writeSerializable(boardPosition);
 	}
@@ -57,8 +56,6 @@ public class Player implements Parcelable {
 		@Override
 		public Player createFromParcel(Parcel in) {
 			String name = in.readString();
-			//Position boardPosition = in.readParcelable(loader)
-			// need to fix this so it reads the position
 			boolean[] categoryArray = new boolean[Constants.MAX_NUMBER_OF_CATEGORIES];
 			in.readBooleanArray(categoryArray);
 			BoardPosition position = (BoardPosition) in.readSerializable();

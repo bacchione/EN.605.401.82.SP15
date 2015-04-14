@@ -18,14 +18,20 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuestionActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
@@ -52,6 +58,27 @@ public class QuestionActivity extends Activity implements OnClickListener,
 		updatefilter.addAction(Constants.UPDATE_QUESTION_TAG);
         this.registerReceiver(mProfileEditorReceiver, updatefilter);
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		boolean value = super.onCreateOptionsMenu(menu);
+			getMenuInflater().inflate(R.menu.add_menu, menu);
+		return value;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_add:
+			final Bundle bundle = new Bundle();
+			bundle.putParcelable(Constants.QUESTION_TAG, new Question(null, null, null));
+			DialogEditQuestion dialog = new DialogEditQuestion();
+			dialog.setArguments(bundle);
+			dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -63,8 +90,6 @@ public class QuestionActivity extends Activity implements OnClickListener,
 		DialogEditQuestion dialog = new DialogEditQuestion();
 		dialog.setArguments(bundle);
 		dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
-		
-		// send in question
 	}
 
 	@Override
@@ -76,16 +101,12 @@ public class QuestionActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		boolean in = true;
-		in = false;
 	}
 	
 	private final BroadcastReceiver mProfileEditorReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			Question me = (Question) intent.getExtras().getParcelable(Constants.UPDATE_QUESTION_TAG);
-			mCategory.getQuestionArray().add(me);
-			mCategory.setQuestionArray(mCategory.getQuestionArray());
+			mCategory.getQuestionArray().add((Question) intent.getExtras().getParcelable(Constants.UPDATE_QUESTION_TAG));
 			mQuestionAdapter.notifyDataSetChanged();
 		};
 	};

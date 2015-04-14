@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.bluebarracudas.trivialpursuit.R;
 import com.bluebarracudas.trivialpursuit.Classes.Category;
+import com.bluebarracudas.trivialpursuit.Classes.Question;
 import com.bluebarracudas.trivialpursuit.Utilities.DefaultQuestionsGenerator;
 
 import Framework.CategoryAdapter;
@@ -40,15 +41,23 @@ public class CategoryActivity extends Activity implements OnClickListener,
 		for(int i = 0; i < size; i++){
 			mCategories.add((Category) intentBundle.getParcelable(String.valueOf(i)));
 		}
-		// mCategories =
-		// intentBundle.getParcelableArrayList(Constants.CATEGORY_DATABASE_TAG);
-
-		//mCategories = DefaultQuestionsGenerator.addDefaultQuestionsGenerator();
 
 		mCategoryAdapter = new CategoryAdapter(this, mCategories);
 		mCategoryListView = (ListView) findViewById(R.id.category_list);
 		mCategoryListView.setAdapter(mCategoryAdapter);
 		mCategoryListView.setOnItemClickListener(this);
+	}
+	
+	public void editCategory(Category oldCategory, Category newCategory){
+		
+	}
+	
+	public void removeCategory(Category category){
+		
+	}
+	
+	public void addCategory(Category category){
+		
 	}
 
 	@Override
