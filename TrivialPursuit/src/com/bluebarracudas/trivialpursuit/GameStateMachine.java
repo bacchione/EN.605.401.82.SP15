@@ -728,7 +728,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			case CREATE_PLAYERS:
 				
 				ArrayList<Player> players = (ArrayList<Player>) intent.getSerializableExtra(Constants.NEW_PLAYERS_TAG);
-				gameInformation.getPlayers().clear();
+				gameInformation.setPlayers(new ArrayList<Player>());
 				
 				for(int i = 0; i < players.size(); i++){
 					gameInformation.getPlayers().add(players.get(i));
