@@ -29,6 +29,7 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 	private EditText mEditTextWrongAnswerThree;
 
 	private Question mQuestion;
+	private int questionIndex;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 
 		final Bundle bundle = getArguments();
 		mQuestion = (Question) bundle.getParcelable(Constants.QUESTION_TAG);
+		questionIndex = (int) bundle.getInt("Question Index");
 	}
 
 	@SuppressLint("InflateParams")
@@ -82,6 +84,7 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 			
 			if(!mEditTextQuestion.getText().toString().matches("") && !mEditTextAnswer.getText().toString().matches("")){
 				final Intent intent = new Intent(Constants.UPDATE_QUESTION_TAG);
+				intent.putExtra("Question Index", questionIndex);
 				intent.putExtra(Constants.QUESTION_TAG, mQuestion);
 				getActivity().sendBroadcast(intent);
 			}

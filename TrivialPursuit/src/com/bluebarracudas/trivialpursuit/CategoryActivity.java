@@ -10,7 +10,10 @@ import com.bluebarracudas.trivialpursuit.Utilities.DefaultQuestionsGenerator;
 import Framework.CategoryAdapter;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +49,35 @@ public class CategoryActivity extends Activity implements OnClickListener,
 		mCategoryListView = (ListView) findViewById(R.id.category_list);
 		mCategoryListView.setAdapter(mCategoryAdapter);
 		mCategoryListView.setOnItemClickListener(this);
+		
+		final IntentFilter updatefilter = new IntentFilter();
+		updatefilter.addAction("Update Categories");
+        this.registerReceiver(mCategoryEditorReceiver, updatefilter);
 	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+
+		this.unregisterReceiver(mCategoryEditorReceiver);
+	}
+	
+	private final BroadcastReceiver mCategoryEditorReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+
+			Category modifiedCategory = (Category) intent.getExtras().getParcelable("Category Tag");
+			for(int i = 0; i < mCategories.size(); i ++){
+				
+				if(mCategories.get(i).getName().equals(modifiedCategory.getName())){
+					mCategories.remove(i);
+					mCategories.add(i, modifiedCategory);
+					break;
+				}
+			}
+			
+		};
+	};
 	
 	public void editCategory(Category oldCategory, Category newCategory){
 		
@@ -76,5 +107,17 @@ public class CategoryActivity extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// send data update
+		final Intent intent = new Intent("Update Category Database");
+		intent.putExtra(Constants.CATEGORY_DATABASE_TAG, mCategories.size());
+		for(int i = 0; i < mCategories.size(); i++){
+			intent.putExtra(String.valueOf(i), mCategories.get(i));
+		}
+		this.sendBroadcast(intent);
+		this.finish();
 	}
 }

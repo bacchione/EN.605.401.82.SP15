@@ -33,7 +33,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class QuestionActivity extends Activity implements OnClickListener,
+public class QuestionActivity extends Activity implements OnItemLongClickListener,
 		OnItemClickListener {
 
 	private QuestionAdapter mQuestionAdapter;
@@ -53,10 +53,11 @@ public class QuestionActivity extends Activity implements OnClickListener,
 		mQuestionListView = (ListView) findViewById(R.id.question_list);
 		mQuestionListView.setAdapter(mQuestionAdapter);
 		mQuestionListView.setOnItemClickListener(this);
+		mQuestionListView.setOnItemLongClickListener(this);
 		
 		final IntentFilter updatefilter = new IntentFilter();
 		updatefilter.addAction(Constants.UPDATE_QUESTION_TAG);
-        this.registerReceiver(mProfileEditorReceiver, updatefilter);
+        this.registerReceiver(mQuestionEditorReceiver, updatefilter);
 	}
 	
 	@Override
@@ -72,6 +73,7 @@ public class QuestionActivity extends Activity implements OnClickListener,
 		case R.id.menu_add:
 			final Bundle bundle = new Bundle();
 			bundle.putParcelable(Constants.QUESTION_TAG, new Question(null, null, null));
+			bundle.putInt("Question Index", -1);
 			DialogEditQuestion dialog = new DialogEditQuestion();
 			dialog.setArguments(bundle);
 			dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
@@ -87,6 +89,7 @@ public class QuestionActivity extends Activity implements OnClickListener,
 		// display dialog question edit here
 		final Bundle bundle = new Bundle();
 		bundle.putParcelable(Constants.QUESTION_TAG, mCategory.getQuestionArray().get(position));
+		bundle.putInt("Question Index", position);
 		DialogEditQuestion dialog = new DialogEditQuestion();
 		dialog.setArguments(bundle);
 		dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
@@ -96,18 +99,39 @@ public class QuestionActivity extends Activity implements OnClickListener,
 	public void onDestroy() {
 		super.onDestroy();
 
-		this.unregisterReceiver(mProfileEditorReceiver);
-	}
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		this.unregisterReceiver(mQuestionEditorReceiver);
 	}
 	
-	private final BroadcastReceiver mProfileEditorReceiver = new BroadcastReceiver() {
+	private final BroadcastReceiver mQuestionEditorReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			mCategory.getQuestionArray().add((Question) intent.getExtras().getParcelable(Constants.UPDATE_QUESTION_TAG));
+			int index = intent.getIntExtra("Question Index", -1);
+			if(index != -1){
+				mCategory.getQuestionArray().remove(index);
+				mCategory.getQuestionArray().add(index, ((Question) intent.getExtras().getParcelable(Constants.QUESTION_TAG)));
+			} else{
+				mCategory.getQuestionArray().add((Question) intent.getExtras().getParcelable(Constants.QUESTION_TAG));
+			}
+			
 			mQuestionAdapter.notifyDataSetChanged();
 		};
 	};
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view,
+			int position, long id) {
+		// TODO Auto-generated method stub
+		mCategory.getQuestionArray().remove(position);
+		mQuestionAdapter.notifyDataSetChanged();
+		Toast.makeText(getApplicationContext(), "Removed question.", Toast.LENGTH_LONG).show();
+		return true;
+	}
+	@Override
+	public void onBackPressed() {
+		// send data update
+		final Intent intent = new Intent("Update Categories");
+		intent.putExtra("Category Tag", mCategory);
+		this.sendBroadcast(intent);
+		this.finish();
+	}
 }

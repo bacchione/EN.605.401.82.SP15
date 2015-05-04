@@ -11,7 +11,10 @@ import Framework.ABaseDialog;
 import Framework.ADialogAlert;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,7 +25,7 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 
-	public final ArrayList<Category> categoryDatabase = new ArrayList<Category>();
+	public ArrayList<Category> categoryDatabase = new ArrayList<Category>();
 	public final ArrayList<Player> playerDatabase = new ArrayList<Player>();
 
 	@Override
@@ -31,7 +34,30 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		categoryDatabase.addAll(DefaultQuestionsGenerator
 				.addDefaultQuestionsGenerator());
+		
+		final IntentFilter updatefilter = new IntentFilter();
+		updatefilter.addAction("Update Category Database");
+        this.registerReceiver(mCategoryDatabaseEditorReceiver, updatefilter);
 	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+
+		this.unregisterReceiver(mCategoryDatabaseEditorReceiver);
+	}
+	
+	private final BroadcastReceiver mCategoryDatabaseEditorReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			final int size = intent.getExtras().getInt(Constants.CATEGORY_DATABASE_TAG);
+			categoryDatabase = new ArrayList<Category>();
+			for(int i = 0; i < size; i++){
+				categoryDatabase.add((Category) intent.getExtras().getParcelable(String.valueOf(i)));
+			}
+			
+		};
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,7 +90,10 @@ public class MainActivity extends Activity {
 		case R.id.menu_new_game:
 			// open new game question dialog screen to start game
 			Intent intents = new Intent(this, GameStateMachine.class);
-			
+			intents.putExtra(Constants.CATEGORY_DATABASE_TAG, categoryDatabase.size());
+			for(int i = 0; i < categoryDatabase.size(); i++){
+				intents.putExtra(String.valueOf(i), categoryDatabase.get(i));
+			}
 			startActivity(intents);
 			return true;
 		case R.id.menu_question_database:

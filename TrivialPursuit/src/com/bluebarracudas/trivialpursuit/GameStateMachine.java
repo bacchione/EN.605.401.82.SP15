@@ -157,8 +157,16 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 		thirdPlayerSlot = (TextView) findViewById(R.id.third_slot_player_name);
 		fourthPlayerSlot = (TextView) findViewById(R.id.fourth_slot_player_name);
 		
-		gameInformation.setCategories(DefaultQuestionsGenerator
-				.addDefaultQuestionsGenerator());
+		final Bundle intentBundle = getIntent().getExtras();
+		
+		final int size = intentBundle.getInt(Constants.CATEGORY_DATABASE_TAG);
+		
+		ArrayList<Category> categories = new ArrayList<Category>();
+		for(int i = 0; i < size; i++){
+			categories.add((Category) intentBundle.getParcelable(String.valueOf(i)));
+		}
+		
+		gameInformation.setCategories(categories);
 		
 		gridLayout00 = (GridLayout) findViewById(R.id.GridLayout00);
 		gridLayout10 = (GridLayout) findViewById(R.id.GridLayout10);
