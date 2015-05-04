@@ -31,34 +31,4 @@
         android:ems="10"
         android:inputType="textMultiLine" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wrong Answers:"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/wrong_answer_one_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/wrong_answer_two_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/wrong_answer_three_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:visibility="gone" />
-
 </LinearLayout>

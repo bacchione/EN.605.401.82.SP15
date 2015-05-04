@@ -24,9 +24,6 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 
 	private EditText mEditTextQuestion;
 	private EditText mEditTextAnswer;
-	private EditText mEditTextWrongAnswerOne;
-	private EditText mEditTextWrongAnswerTwo;
-	private EditText mEditTextWrongAnswerThree;
 
 	private Question mQuestion;
 	private int questionIndex;
