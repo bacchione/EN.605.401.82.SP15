@@ -104,8 +104,8 @@ public class DialogEditCategory extends ADialogAlert implements OnClickListener 
 			} else {
 				mCategory.setColor(Color.GREEN);
 			}
-			
-			if(mCategory.getName() != ""){
+
+			if(!mCategory.getName().equals("")){
 				// send broadcast
 				final Intent intent = new Intent("Update Categories");
 				intent.putExtra("Category Index", categoryIndex);

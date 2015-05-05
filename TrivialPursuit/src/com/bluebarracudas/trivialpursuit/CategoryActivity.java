@@ -24,11 +24,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class CategoryActivity extends Activity implements OnClickListener,
+public class CategoryActivity extends Activity implements OnItemLongClickListener,
 		OnItemClickListener {
 
 	private CategoryAdapter mCategoryAdapter;
@@ -36,6 +37,8 @@ public class CategoryActivity extends Activity implements OnClickListener,
 	private ArrayList<Category> mCategories = new ArrayList<Category>();
 	public static final String TAG = "CategoryActvity.TAG";
 
+	private boolean categoryEditMode = false;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class CategoryActivity extends Activity implements OnClickListener,
 		mCategoryListView = (ListView) findViewById(R.id.category_list);
 		mCategoryListView.setAdapter(mCategoryAdapter);
 		mCategoryListView.setOnItemClickListener(this);
+		mCategoryListView.setOnItemLongClickListener(this);
 		
 		final IntentFilter updatefilter = new IntentFilter();
 		updatefilter.addAction("Update Categories");
@@ -71,7 +75,14 @@ public class CategoryActivity extends Activity implements OnClickListener,
 
 			int categoryIndex;
 			
-			if(intent.getExtras().containsKey("Category Index")){
+			if(intent.getExtras().containsKey("Reset Category Edit")){
+				categoryEditMode = false;
+			}
+			else if(intent.getExtras().containsKey("Remove Category Index")){
+				categoryIndex = intent.getIntExtra("Remove Category Index", 0);
+				mCategories.remove(categoryIndex);
+			}
+			else if(intent.getExtras().containsKey("Category Index")){
 				categoryIndex = intent.getIntExtra("Category Index", 0);
 				if(categoryIndex != -1){
 					mCategories.remove(categoryIndex);
@@ -101,17 +112,13 @@ public class CategoryActivity extends Activity implements OnClickListener,
 			long id) {
 		// TODO Auto-generated method stub
 		// need to send the question array
+		if(categoryEditMode) return;
+		
 		Intent intent = new Intent(this, QuestionActivity.class);
 		// intent.putParcelableArrayListExtra(Constants.QUESTION_TAG,
 		// mCategories.get(position).getQuestionArray());
 		intent.putExtra(Constants.QUESTION_TAG, mCategories.get(position));
 		startActivity(intent);
-	}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
 	}
 	
 
@@ -147,5 +154,19 @@ public class CategoryActivity extends Activity implements OnClickListener,
 		}
 		this.sendBroadcast(intent);
 		this.finish();
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view,
+			int position, long id) {
+		// TODO Auto-generated method stub
+		categoryEditMode = true;
+		final DialogCategoryOptions dialog = new DialogCategoryOptions();
+		final Bundle bundle = new Bundle();
+		bundle.putParcelable(Constants.CHOOSE_CATEGORY, mCategories.get(position));
+		bundle.putInt("Category Index", position);
+		dialog.setArguments(bundle);
+		dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
+		return false;
 	}
 }
