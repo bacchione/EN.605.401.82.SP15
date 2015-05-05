@@ -111,7 +111,7 @@ public class DialogEditCategory extends ADialogAlert implements OnClickListener 
 				intent.putExtra("Category Index", categoryIndex);
 				intent.putExtra("Category Tag", mCategory);
 				// causes for close
-				//getActivity().sendBroadcast(intent);
+				getActivity().sendBroadcast(intent);
 			}
 			
 			break;

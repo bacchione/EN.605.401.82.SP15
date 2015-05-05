@@ -72,14 +72,14 @@ public class CategoryActivity extends Activity implements OnClickListener,
 			int categoryIndex;
 			
 			if(intent.getExtras().containsKey("Category Index")){
-				categoryIndex = intent.getExtras().getParcelable("Category Index");
+				categoryIndex = intent.getIntExtra("Category Index", 0);
 				if(categoryIndex != -1){
 					mCategories.remove(categoryIndex);
 					mCategories.add(categoryIndex, (Category) intent.getExtras().getParcelable("Category Tag"));
 				} else {
 					mCategories.add((Category) intent.getExtras().getParcelable("Category Tag"));
 				}
-				mCategoryAdapter.notifyDataSetChanged();
+				
 				
 			} else {
 				Category modifiedCategory = (Category) intent.getExtras().getParcelable("Category Tag");
@@ -92,6 +92,7 @@ public class CategoryActivity extends Activity implements OnClickListener,
 					}
 				}	
 			}
+			mCategoryAdapter.notifyDataSetChanged();
 		};
 	};
 
