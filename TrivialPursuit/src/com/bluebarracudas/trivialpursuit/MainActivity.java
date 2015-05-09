@@ -95,6 +95,13 @@ public class MainActivity extends Activity {
 				return true;
 			}
 			
+			for(int i = 0; i < categoryDatabase.size(); i++){
+				if(categoryDatabase.get(i).getQuestionArray().size() == 0){
+					Toast.makeText(getApplicationContext(), "Please make sure all categories have at least 1 question", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+			}
+			
 			Intent intents = new Intent(this, GameStateMachine.class);
 			intents.putExtra(Constants.CATEGORY_DATABASE_TAG, categoryDatabase.size());
 			for(int i = 0; i < categoryDatabase.size(); i++){
