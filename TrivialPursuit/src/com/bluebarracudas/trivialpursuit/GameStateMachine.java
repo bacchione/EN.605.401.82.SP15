@@ -47,6 +47,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 
 	public GameInformation gameInformation = new GameInformation(null, null, 0);
 	public int hubCategoryIndex;
+	private ArrayList<Player> winningPlayers = new ArrayList<Player>();
 	
 	public enum GameState{
 		NOT_STARTED{
@@ -796,15 +797,14 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 							gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getCategoryArray()[1] == true && 
 							gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getCategoryArray()[2] == true && 
 							gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getCategoryArray()[3] == true){
-						Toast.makeText(getApplicationContext(), gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getName() + " WINS!", Toast.LENGTH_SHORT).show();
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						
+						winningPlayers.add(gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()));
+						
+						gameInformation.setCurrentPlayer(gameInformation.getCurrentPlayer() + 1);
+						if(gameInformation.getCurrentPlayer() > gameInformation.getPlayers().size() - 1){
+							gameInformation.setCurrentPlayer(0);
 						}
-						onBackPressed();
-						return;
+						
 					}
 					else if((gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getPosition().getPosition().getX() == BoardPosition.COORDINATES_0_0.getPosition().getX() &&
 							gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getPosition().getPosition().getY() == BoardPosition.COORDINATES_0_0.getPosition().getY())
@@ -832,7 +832,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 					Toast.makeText(getApplicationContext(), "Answered Wrong", Toast.LENGTH_SHORT).show();
 					// Pick the next player to go
 					gameInformation.setCurrentPlayer(gameInformation.getCurrentPlayer() + 1);
-					if(gameInformation.getCurrentPlayer() > gameInformation.getPlayers().size()){
+					if(gameInformation.getCurrentPlayer() > gameInformation.getPlayers().size() - 1){
 						gameInformation.setCurrentPlayer(0);
 					}
 				}
@@ -970,6 +970,32 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
 			break;
 		case ROLL_DICE:
+			boolean doneGame = false;
+			for(int i = 0; i < winningPlayers.size(); i++){
+				if(winningPlayers.get(i).getName() == gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getName()){
+					//done game
+					String output = "";
+					for(int x = 0; x < winningPlayers.size(); x++){
+						output += winningPlayers.get(x).getName() + "\n";
+					}
+					
+					Toast.makeText(getApplicationContext(), output + " WIN!", Toast.LENGTH_SHORT).show();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					doneGame = true;
+					break;
+				}
+			}
+			
+			if(doneGame){
+				onBackPressed();
+				return newState;
+			}
+			
 			dice.setVisibility(View.VISIBLE);
 			rollResult.setText("?");
 			Toast.makeText(getApplicationContext(), gameInformation.getPlayers().get(gameInformation.getCurrentPlayer()).getName() + ": Roll the dice!", Toast.LENGTH_SHORT).show();
@@ -1053,7 +1079,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.dice_imageView:
-			rollResult.setText(String.valueOf(Utils.generateRandomNumber()));
+			rollResult.setText(String.valueOf(6/*Utils.generateRandomNumber()*/));
 			dice.setVisibility(View.INVISIBLE);
 			
 			continueGame(GameState.HIGHLIGHT_MOVE_OPTIONS);
