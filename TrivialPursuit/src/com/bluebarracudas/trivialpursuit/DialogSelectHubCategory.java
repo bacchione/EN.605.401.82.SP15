@@ -44,6 +44,7 @@ public class DialogSelectHubCategory extends ADialogAlert implements OnClickList
 		
 		final int size = intentBundle.getInt(Constants.CATEGORY_DATABASE_TAG);
 		
+		
 		for(int i = 0; i < size; i++){
 			mCategories.add((Category) intentBundle.getParcelable(String.valueOf(i)));
 		}

@@ -22,6 +22,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -89,6 +90,11 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.menu_new_game:
 			// open new game question dialog screen to start game
+			if(categoryDatabase.size() < 4){
+				Toast.makeText(getApplicationContext(), "At least 4 categories must exist to start the game", Toast.LENGTH_SHORT).show();
+				return true;
+			}
+			
 			Intent intents = new Intent(this, GameStateMachine.class);
 			intents.putExtra(Constants.CATEGORY_DATABASE_TAG, categoryDatabase.size());
 			for(int i = 0; i < categoryDatabase.size(); i++){

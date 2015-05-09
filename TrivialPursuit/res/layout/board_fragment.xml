@@ -79,9 +79,8 @@
 
     <GridLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="302dp"
         android:layout_gravity="center|center_vertical|center_horizontal"
-        android:layout_weight="0.83"
         android:columnCount="7"
         android:paddingTop="20dp" >
 
@@ -319,7 +318,7 @@
             android:columnCount="2"
             android:numColumns="2"
             android:padding="2dp" >
-
+                        
             <GridLayout
                 android:id="@+id/GridLayout01Category0"
                 android:layout_width="18dp"
@@ -1875,6 +1874,7 @@
                     android:background="@android:color/holo_green_light"
                     android:gravity="center" />
             </GridLayout>
+
         </GridLayout>
 
         <GridLayout
@@ -7476,6 +7476,52 @@
                     android:gravity="center" />
             </GridLayout>
         </GridLayout>
+    </GridLayout>
+    
+     <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="0"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/firstCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category 1"
+                android:textColor="@android:color/holo_orange_light" />
+                        
+            <TextView
+                android:id="@+id/secondCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category 2"
+                android:textColor="@android:color/holo_orange_light" />
+
+            <TextView
+                android:id="@+id/thirdCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category 3"
+                android:textColor="@android:color/holo_orange_light" />
+
+            <TextView
+                android:id="@+id/fourthCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category 4"
+                android:textColor="@android:color/holo_orange_light" />
+        </LinearLayout>
+
+      
     </GridLayout>
 
 </LinearLayout>

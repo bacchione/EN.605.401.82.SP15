@@ -85,9 +85,13 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			@Override
 			public int getStateId(){return 8;}
 		},
-		NULL{
+		CHOOSE_CATEGORIES{
 			@Override
 			public int getStateId(){return 9;}
+		},
+		NULL{
+			@Override
+			public int getStateId(){return 10;}
 		};
 		
 		public abstract int getStateId();
@@ -109,6 +113,10 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	private TextView secondPlayerSlot;
 	private TextView thirdPlayerSlot;
 	private TextView fourthPlayerSlot;
+	private TextView firstCategory;
+	private TextView secondCategory;
+	private TextView thirdCategory;
+	private TextView fourthCategory;
 	
 	private GridLayout gridLayout00;
 	private GridLayout gridLayout10;
@@ -156,6 +164,10 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 		secondPlayerSlot = (TextView) findViewById(R.id.second_slot_player_name);
 		thirdPlayerSlot = (TextView) findViewById(R.id.third_slot_player_name);
 		fourthPlayerSlot = (TextView) findViewById(R.id.fourth_slot_player_name);
+		firstCategory = (TextView) findViewById(R.id.firstCategory);
+		secondCategory = (TextView) findViewById(R.id.secondCategory);
+		thirdCategory = (TextView) findViewById(R.id.thirdCategory);
+		fourthCategory = (TextView) findViewById(R.id.fourthCategory);
 		
 		final Bundle intentBundle = getIntent().getExtras();
 		
@@ -726,8 +738,30 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			
 			GameState gameState = GameState.getGameStateById(intent.getIntExtra(Constants.GAME_STATE_TAG, 0));
 			GameState nextGameState = GameState.NULL;
-			
+    		
 			switch(gameState){
+			case CHOOSE_CATEGORIES:
+				final int size = intent.getExtras().getInt(Constants.CATEGORY_DATABASE_TAG);
+				
+				final ArrayList<Category> temp = new ArrayList<Category>();
+				
+				for(int i = 0; i < size; i++){
+					temp.add((Category) intent.getExtras().getParcelable(String.valueOf(i)));
+				}
+				gameInformation.setCategories(new ArrayList<Category>(temp));
+				
+				firstCategory.setText(gameInformation.getCategories().get(0).getName());
+				secondCategory.setText(gameInformation.getCategories().get(1).getName());
+				thirdCategory.setText(gameInformation.getCategories().get(2).getName());
+				fourthCategory.setText(gameInformation.getCategories().get(3).getName());
+				
+				firstCategory.setTextColor(gameInformation.getCategories().get(0).getColor());
+				secondCategory.setTextColor(gameInformation.getCategories().get(1).getColor());
+				thirdCategory.setTextColor(gameInformation.getCategories().get(2).getColor());
+				fourthCategory.setTextColor(gameInformation.getCategories().get(3).getColor());
+				
+				nextGameState = GameState.ROLL_DICE;
+				break;
 			case ASK_HUB_CATEGORY:
 				hubCategoryIndex = intent.getIntExtra(Constants.CHOOSE_CATEGORY, 0);
 				//Toast.makeText(getApplicationContext(), String.valueOf(hubCategoryIndex), Toast.LENGTH_SHORT).show();
@@ -745,7 +779,8 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 				// Sets all the tokens to invisible when the game starts
 				removeAllPlayerTokens();
 				
-				nextGameState = GameState.ROLL_DICE;
+				nextGameState = GameState.CHOOSE_CATEGORIES;
+				//nextGameState = GameState.ROLL_DICE;
 				break;
 			case ANSWERED_QUESTION:
 				boolean answeredCorrect = intent.getBooleanExtra(Constants.ASK_QUESTION_RESULT, false);
@@ -917,6 +952,18 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 		GameState newState = GameState.NULL;
 		
 		switch(currentState){
+		case CHOOSE_CATEGORIES:
+			DialogChooseCategories selectCategoryDialog = new DialogChooseCategories();
+			selectCategoryDialog.setCancelable(false);
+			final Bundle category = new Bundle();
+			
+			category.putInt(Constants.CATEGORY_DATABASE_TAG, gameInformation.getCategories().size());
+			for(int i = 0; i < gameInformation.getCategories().size(); i++){
+				category.putParcelable(String.valueOf(i), gameInformation.getCategories().get(i));
+			}
+			selectCategoryDialog.setArguments(category);
+			selectCategoryDialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
+			break;
 		case STARTING_NEW_GAME:
 			DialogCreatePlayers dialog = new DialogCreatePlayers();
 			dialog.setCancelable(false);
@@ -954,16 +1001,16 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 			break;
 		case ASK_HUB_CATEGORY:
 			// ask witch category
-			DialogSelectHubCategory selectCategoryDialog = new DialogSelectHubCategory();
-			selectCategoryDialog.setCancelable(false);
-			final Bundle categoryBundle = new Bundle();
+			DialogSelectHubCategory selectCategoryDialog2 = new DialogSelectHubCategory();
+			selectCategoryDialog2.setCancelable(false);
+			final Bundle categoryBundle2 = new Bundle();
 			
-			categoryBundle.putInt(Constants.CATEGORY_DATABASE_TAG, gameInformation.getCategories().size());
-			for(int i = 0; i < gameInformation.getCategories().size(); i++){
-				categoryBundle.putParcelable(String.valueOf(i), gameInformation.getCategories().get(i));
+			categoryBundle2.putInt(Constants.CATEGORY_DATABASE_TAG, 4);
+			for(int i = 0; i < 4; i++){
+				categoryBundle2.putParcelable(String.valueOf(i), gameInformation.getCategories().get(i));
 			}
-			selectCategoryDialog.setArguments(categoryBundle);
-			selectCategoryDialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
+			selectCategoryDialog2.setArguments(categoryBundle2);
+			selectCategoryDialog2.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
 			break;
 		case ASK_HUB_QUESTION:
 			DialogAskQuestion hubQuestionDialog = new DialogAskQuestion();
