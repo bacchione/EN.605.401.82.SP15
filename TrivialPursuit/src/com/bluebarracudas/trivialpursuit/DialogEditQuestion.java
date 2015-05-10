@@ -27,6 +27,7 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 
 	private Question mQuestion;
 	private int questionIndex;
+	private String categoryName;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 		final Bundle bundle = getArguments();
 		mQuestion = (Question) bundle.getParcelable(Constants.QUESTION_TAG);
 		questionIndex = (int) bundle.getInt("Question Index");
+		categoryName = (String) bundle.getString("Category Name");
 	}
 
 	@SuppressLint("InflateParams")
@@ -78,6 +80,7 @@ public class DialogEditQuestion extends ADialogAlert implements OnClickListener 
 		
 			mQuestion.setQuestion(mEditTextQuestion.getText().toString());
 			mQuestion.setAnswer(mEditTextAnswer.getText().toString());
+			mQuestion.setCategoryName(categoryName);
 			
 			if(!mEditTextQuestion.getText().toString().matches("") && !mEditTextAnswer.getText().toString().matches("")){
 				final Intent intent = new Intent(Constants.UPDATE_QUESTION_TAG);

@@ -74,6 +74,7 @@ public class QuestionActivity extends Activity implements OnItemLongClickListene
 			final Bundle bundle = new Bundle();
 			bundle.putParcelable(Constants.QUESTION_TAG, new Question(null, null, null));
 			bundle.putInt("Question Index", -1);
+			bundle.putString("Category Name", mCategory.getName());
 			DialogEditQuestion dialog = new DialogEditQuestion();
 			dialog.setArguments(bundle);
 			dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);
@@ -90,6 +91,7 @@ public class QuestionActivity extends Activity implements OnItemLongClickListene
 		final Bundle bundle = new Bundle();
 		bundle.putParcelable(Constants.QUESTION_TAG, mCategory.getQuestionArray().get(position));
 		bundle.putInt("Question Index", position);
+		bundle.putString("Category Name", mCategory.getName());
 		DialogEditQuestion dialog = new DialogEditQuestion();
 		dialog.setArguments(bundle);
 		dialog.show(getFragmentManager(), ABaseDialog.TAG_DIALOG_FRAGMENT);

@@ -1079,7 +1079,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.dice_imageView:
-			rollResult.setText(String.valueOf(6/*Utils.generateRandomNumber()*/));
+			rollResult.setText(String.valueOf(Utils.generateRandomNumber()));
 			dice.setVisibility(View.INVISIBLE);
 			
 			continueGame(GameState.HIGHLIGHT_MOVE_OPTIONS);
