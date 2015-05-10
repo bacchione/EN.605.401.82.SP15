@@ -9,4 +9,14 @@
     tools:context="com.bluebarracudas.trivialpursuit.MainActivity"
     android:background="@drawable/trivial_pursuit_image" >
 
+    <Button
+        android:id="@+id/ClearDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="77dp"
+        android:onClick="onClick_ClearAll"
+        android:text="Clear Database" />
+
 </RelativeLayout>

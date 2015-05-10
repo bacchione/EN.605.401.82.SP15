@@ -19,6 +19,17 @@ public class Question implements Parcelable {
 		return this.categoryName;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		Question q;
+		if(o instanceof Question){
+			q = (Question) o;
+		}else{
+			return false; 
+		}
+		return this.answer.equals(q.answer) && this.categoryName.equals(q.categoryName) && this.question.equals(q.question);
+	}
+
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}

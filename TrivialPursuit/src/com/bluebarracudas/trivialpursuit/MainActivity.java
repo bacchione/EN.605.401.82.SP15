@@ -2,9 +2,11 @@ package com.bluebarracudas.trivialpursuit;
 
 import java.util.ArrayList;
 
+import com.bluebarracudas.trivialpursuit.DBAdapter;
 import com.bluebarracudas.trivialpursuit.Classes.Category;
 import com.bluebarracudas.trivialpursuit.Classes.GameInformation;
 import com.bluebarracudas.trivialpursuit.Classes.Player;
+import com.bluebarracudas.trivialpursuit.Classes.Question;
 import com.bluebarracudas.trivialpursuit.Utilities.DefaultQuestionsGenerator;
 
 import Framework.ABaseDialog;
@@ -15,39 +17,52 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
 	public ArrayList<Category> categoryDatabase = new ArrayList<Category>();
 	public final ArrayList<Player> playerDatabase = new ArrayList<Player>();
+	DBAdapter myDb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		categoryDatabase.addAll(DefaultQuestionsGenerator
-				.addDefaultQuestionsGenerator());
+		openDB();
+		Cursor cursor = myDb.getAllRows();
+		cursor.moveToFirst();
+		if(cursor.isAfterLast()){
+			categoryDatabase.addAll(DefaultQuestionsGenerator
+					.addDefaultQuestionsGenerator());
+		}else{
+			populateArrayListsFromDB();
+		}
 		
 		final IntentFilter updatefilter = new IntentFilter();
 		updatefilter.addAction("Update Category Database");
-        this.registerReceiver(mCategoryDatabaseEditorReceiver, updatefilter);
+		this.registerReceiver(mCategoryDatabaseEditorReceiver, updatefilter);
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 
 		this.unregisterReceiver(mCategoryDatabaseEditorReceiver);
+		closeDB();
 	}
-	
+
 	private final BroadcastReceiver mCategoryDatabaseEditorReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -56,7 +71,7 @@ public class MainActivity extends Activity {
 			for(int i = 0; i < size; i++){
 				categoryDatabase.add((Category) intent.getExtras().getParcelable(String.valueOf(i)));
 			}
-			
+
 		};
 	};
 
@@ -66,21 +81,33 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	public GameInformation readDatabaseInformation(){
-		// Not implemented
+
 		return new GameInformation(categoryDatabase, playerDatabase, 0);
 	}
-	
+
 	public void writeDatabaseInformation(GameInformation gameInformation){
 		// Not implemented
 	}
-	
+
 	public void saveAndClose(){
+		updateDBWithArrayLists();
 		finish();
 		System.exit(0);
 	}
 
+	private void updateDBWithArrayLists(){
+		myDb.deleteAll();
+		//save questions
+		for(int i=0 ; i < categoryDatabase.size(); i++){
+			Category currCat = categoryDatabase.get(i);
+			for(int j=0 ; j < currCat.getQuestionArray().size(); j++){
+				Question currQuestion = currCat.getQuestionByIndex(j);
+				myDb.insertRow(currQuestion.getQuestion(), currQuestion.getAnswer(), currCat.getName());
+			}
+		}	
+	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -94,14 +121,14 @@ public class MainActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "At least 4 categories must exist to start the game", Toast.LENGTH_SHORT).show();
 				return true;
 			}
-			
+
 			for(int i = 0; i < categoryDatabase.size(); i++){
 				if(categoryDatabase.get(i).getQuestionArray().size() == 0){
 					Toast.makeText(getApplicationContext(), "Please make sure all categories have at least 1 question", Toast.LENGTH_SHORT).show();
 					return true;
 				}
 			}
-			
+
 			Intent intents = new Intent(this, GameStateMachine.class);
 			intents.putExtra(Constants.CATEGORY_DATABASE_TAG, categoryDatabase.size());
 			for(int i = 0; i < categoryDatabase.size(); i++){
@@ -117,7 +144,7 @@ public class MainActivity extends Activity {
 			for(int i = 0; i < categoryDatabase.size(); i++){
 				intent.putExtra(String.valueOf(i), categoryDatabase.get(i));
 			}
-			
+
 			startActivity(intent);
 			return true;
 		case R.id.menu_save:
@@ -138,5 +165,86 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void openDB() {
+		myDb = new DBAdapter(this);
+		myDb.open();
+	}
+	private void closeDB() {
+		myDb.close();
+	}
+
+	private void populateArrayListsFromDB() {
+		Cursor cursor = myDb.getAllRows();
+		if (cursor.moveToFirst()){
+			ArrayList<Question> questionsToAdd = new ArrayList<Question>();
+			ArrayList<String> categoriesToAdd = new ArrayList<String>();
+			//Gets questions and categories out of database
+			while(!cursor.isAfterLast()){
+				String id = cursor.getString(cursor.getColumnIndex("_id"));
+				String question = cursor.getString(cursor.getColumnIndex("question"));
+				String answer = cursor.getString(cursor.getColumnIndex("answer"));
+				String category = cursor.getString(cursor.getColumnIndex("category"));
+				if(!categoriesToAdd.contains(category)){
+					categoriesToAdd.add(category);
+				}
+				Question currQ = new Question(category, question, answer);
+				questionsToAdd.add(currQ);
+				cursor.moveToNext();
+			}
+			//From list of questions by categories
+			ArrayList<ArrayList<Question>> questionsByCategoryLists = new ArrayList<ArrayList<Question>>();
+			for(String category : categoriesToAdd){
+				for(Question question : questionsToAdd){
+					if(question.getCategoryName().equals(category)){
+						Boolean added = false;
+						for(ArrayList<Question> questionsOfSameCat : questionsByCategoryLists){
+							if(questionsOfSameCat.get(0).getCategoryName().equals(question.getCategoryName())){
+								if(!questionsOfSameCat.contains(question)){
+									questionsOfSameCat.add(question);
+								}
+								added = true;
+							}
+						}
+						if(added==false){
+							ArrayList<Question> ql = new ArrayList<Question>();
+							ql.add(question);
+							questionsByCategoryLists.add(ql);
+						}
+					}
+				}
+			}
+			//Add Categories to category array lists use in game application 
+			for(ArrayList<Question> questionsOfSameCat : questionsByCategoryLists){
+				String category = questionsOfSameCat.get(0).getCategoryName();
+				categoryDatabase.add(new Category(category, getCatColor(category), questionsOfSameCat));
+			}
+		}
+		cursor.close();
+	}
+
+	private int getCatColor(String category){
+		for(Category cat : categoryDatabase){
+			if(cat.getName().equals(category)){
+				return cat.getColor();
+			}
+		}
+		if(category.equals("Independence Day Holiday")){
+			return Color.GREEN;
+		}else if(category.equals("Events")){ 
+			return Color.WHITE;			
+		}else if(category.equals("Places")){ 
+			return Color.BLUE;
+		}else if(category.equals("People")){ 
+			return Color.RED;
+		}else{
+			return Color.RED;
+		}
+	}
+	
+	public void onClick_ClearAll(View v) {
+		myDb.deleteAll();
+		categoryDatabase.clear();
 	}
 }
