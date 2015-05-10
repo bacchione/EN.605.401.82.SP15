@@ -83,10 +83,8 @@ public class MainActivity extends Activity {
 		// Not implemented
 	}
 
-	public void saveAndClose(){
+	public void save(){
 		updateDBWithArrayLists();
-		finish();
-		System.exit(0);
 	}
 
 	private void updateDBWithArrayLists(){
@@ -139,12 +137,15 @@ public class MainActivity extends Activity {
 
 			startActivity(intent);
 			return true;
-		case R.id.menu_clear_database:
+		case R.id.menu_restore_database:
 			myDb.deleteAll();
 			categoryDatabase.clear();
+			categoryDatabase.addAll(DefaultQuestionsGenerator
+					.addDefaultQuestionsGenerator());
+			save();
 			return true;
 		case R.id.menu_save:
-			saveAndClose();
+			save();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
