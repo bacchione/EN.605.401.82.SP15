@@ -175,11 +175,11 @@ public class MainActivity extends Activity {
 			ArrayList<Integer> categoriesColors = new ArrayList<Integer>();
 			//Gets questions and categories out of database
 			while(!cursor.isAfterLast()){
-				String id = cursor.getString(cursor.getColumnIndex("_id"));
-				String question = cursor.getString(cursor.getColumnIndex("question"));
-				String answer = cursor.getString(cursor.getColumnIndex("answer"));
-				String category = cursor.getString(cursor.getColumnIndex("category"));
-				Integer color = cursor.getInt(cursor.getColumnIndex("color"));
+				String id = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ROWID));
+				String question = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_QUESTION));
+				String answer = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_ANSWER));
+				String category = cursor.getString(cursor.getColumnIndex(DBAdapter.KEY_CATEGORY));
+				Integer color = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_CAT_COLOR));
 				if(!categoriesToAdd.contains(category)){
 					categoriesToAdd.add(category);
 					categoriesColors.add(color);
