@@ -29,21 +29,21 @@ public class DBAdapter {
 	public static final String KEY_QUESTION = "question";
 	public static final String KEY_ANSWER = "answer";
 	public static final String KEY_CATEGORY = "category";
+	public static final String KEY_CAT_COLOR = "catColor";
 
 	// (0 = KEY_ROWID, 1=...)
 	public static final int COL_QUESTION = 1;
 	public static final int COL_ANSWER = 2;
 	public static final int COL_CATEGORY = 3;
+	public static final int COL_COLOR = 4;
 
-
-	public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_QUESTION, KEY_ANSWER, KEY_CATEGORY};
+	public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_QUESTION, KEY_ANSWER, KEY_CATEGORY, KEY_CAT_COLOR};
 
 	// DB info: it's name, and the table we are using (just one).
 	public static final String DATABASE_NAME = "trivialPursuitDb";
 	public static final String QUESTIONS_TABLE = "questionsTable";
-	public static final String GAMESTATE_TABLE = "gameStateTable";
 	// Track DB version if a new version of your app changes the format.
-	public static final int DATABASE_VERSION = 2;	
+	public static final int DATABASE_VERSION = 4;	
 
 	private static final String QUESTIONS_DATABASE_CREATE_SQL = 
 			"create table " + QUESTIONS_TABLE 
@@ -57,8 +57,8 @@ public class DBAdapter {
 			// NOTE: All must be comma separated (end of line!) Last one must have NO comma!!
 			+ KEY_QUESTION + " string not null, "
 			+ KEY_ANSWER + " string not null, "
-			+ KEY_CATEGORY + " string not null"
-
+			+ KEY_CATEGORY + " string not null,"
+			+ KEY_CAT_COLOR + " integer not null"
 			// Rest  of creation:
 			+ ");";
 
@@ -89,7 +89,7 @@ public class DBAdapter {
 	}
 
 	// Add a new set of values to the database.
-	public long insertRow(String question, String answer, String category) {
+	public long insertRow(String question, String answer, String category, int color) {
 		/*
 		 * CHANGE 3:
 		 */		
@@ -100,6 +100,7 @@ public class DBAdapter {
 		initialValues.put(KEY_QUESTION, question);
 		initialValues.put(KEY_ANSWER, answer);
 		initialValues.put(KEY_CATEGORY, category);
+		initialValues.put(KEY_CAT_COLOR, color);
 
 		// Insert it into the database.
 		return db.insert(QUESTIONS_TABLE, null, initialValues);
@@ -145,7 +146,7 @@ public class DBAdapter {
 	}
 
 	// Change an existing row to be equal to new data.
-	public boolean updateRow(long rowId, String question, String answer, String category) {
+	public boolean updateRow(long rowId, String question, String answer, String category, int color) {
 		String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -158,7 +159,8 @@ public class DBAdapter {
 		newValues.put(KEY_QUESTION, question);
 		newValues.put(KEY_ANSWER, answer);
 		newValues.put(KEY_CATEGORY, category);
-
+		newValues.put(KEY_CAT_COLOR, color);
+		
 		// Insert it into the database.
 		return db.update(QUESTIONS_TABLE, newValues, where, null) != 0;
 	}

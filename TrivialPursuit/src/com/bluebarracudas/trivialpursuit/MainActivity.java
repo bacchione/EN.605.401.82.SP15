@@ -9,10 +9,7 @@ import com.bluebarracudas.trivialpursuit.Classes.Player;
 import com.bluebarracudas.trivialpursuit.Classes.Question;
 import com.bluebarracudas.trivialpursuit.Utilities.DefaultQuestionsGenerator;
 
-import Framework.ABaseDialog;
-import Framework.ADialogAlert;
 import android.app.Activity;
-import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,14 +17,9 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -104,7 +96,7 @@ public class MainActivity extends Activity {
 			Category currCat = categoryDatabase.get(i);
 			for(int j=0 ; j < currCat.getQuestionArray().size(); j++){
 				Question currQuestion = currCat.getQuestionByIndex(j);
-				myDb.insertRow(currQuestion.getQuestion(), currQuestion.getAnswer(), currCat.getName());
+				myDb.insertRow(currQuestion.getQuestion(), currQuestion.getAnswer(), currCat.getName(), currCat.getColor());
 			}
 		}	
 	}
@@ -180,14 +172,17 @@ public class MainActivity extends Activity {
 		if (cursor.moveToFirst()){
 			ArrayList<Question> questionsToAdd = new ArrayList<Question>();
 			ArrayList<String> categoriesToAdd = new ArrayList<String>();
+			ArrayList<Integer> categoriesColors = new ArrayList<Integer>();
 			//Gets questions and categories out of database
 			while(!cursor.isAfterLast()){
 				String id = cursor.getString(cursor.getColumnIndex("_id"));
 				String question = cursor.getString(cursor.getColumnIndex("question"));
 				String answer = cursor.getString(cursor.getColumnIndex("answer"));
 				String category = cursor.getString(cursor.getColumnIndex("category"));
+				Integer color = cursor.getInt(cursor.getColumnIndex("color"));
 				if(!categoriesToAdd.contains(category)){
 					categoriesToAdd.add(category);
+					categoriesColors.add(color);
 				}
 				Question currQ = new Question(category, question, answer);
 				questionsToAdd.add(currQ);
@@ -216,9 +211,11 @@ public class MainActivity extends Activity {
 				}
 			}
 			//Add Categories to category array lists use in game application 
+			int colorIndex = 0;
 			for(ArrayList<Question> questionsOfSameCat : questionsByCategoryLists){
 				String category = questionsOfSameCat.get(0).getCategoryName();
-				categoryDatabase.add(new Category(category, getCatColor(category), questionsOfSameCat));
+				categoryDatabase.add(new Category(category, categoriesColors.get(colorIndex), questionsOfSameCat));
+				colorIndex++;
 			}
 		}
 		cursor.close();
