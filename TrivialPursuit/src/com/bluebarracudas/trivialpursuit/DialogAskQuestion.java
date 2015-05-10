@@ -36,6 +36,7 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 	private ProgressBar mProgress;
 	CountDownTimer mCountDownTimer;
 	int i = 100;
+	private boolean debug = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,10 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 		    mCountDownTimer.start();
 
 		mEditTextQuestion.setText(mQuestion.getQuestion());
-		mEditTextAnswer.setText(mQuestion.getAnswer());
+		
+		if(debug){
+			mEditTextAnswer.setText(mQuestion.getAnswer());
+		}
 
 		builder.setView(view);
 		builder.setTitle("Question");

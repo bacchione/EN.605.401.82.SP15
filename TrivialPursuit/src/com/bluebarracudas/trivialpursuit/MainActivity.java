@@ -139,21 +139,12 @@ public class MainActivity extends Activity {
 
 			startActivity(intent);
 			return true;
+		case R.id.menu_clear_database:
+			myDb.deleteAll();
+			categoryDatabase.clear();
+			return true;
 		case R.id.menu_save:
 			saveAndClose();
-			/*String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
-			CSVWriter writer = new CSVWriter(new FileWriter(csv));
-
-			List<String[]> data = new ArrayList<String[]>();
-			data.add(new String[] {"India", "New Delhi"});
-			data.add(new String[] {"United States", "Washington D.C"});
-			data.add(new String[] {"Germany", "Berlin"});
-
-			writer.writeAll(data);
-
-			writer.close();
-			finish();
-			System.exit(0);*/
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -238,10 +229,5 @@ public class MainActivity extends Activity {
 		}else{
 			return Color.RED;
 		}
-	}
-	
-	public void onClick_ClearAll(View v) {
-		myDb.deleteAll();
-		categoryDatabase.clear();
 	}
 }

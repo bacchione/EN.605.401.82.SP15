@@ -5,16 +5,23 @@
    <item
         android:id="@+id/menu_new_game"
         android:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_add"
         android:title="New Game"/>
     
    <item
         android:id="@+id/menu_question_database"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_search"
         android:title="Question Database"/>
-    
-       <item
+      <item
         android:id="@+id/menu_save"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_save"
         android:title="Save/Close"/>
+   <item
+        android:id="@+id/menu_clear_database"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="Clear Database"/>
     
 </menu>
