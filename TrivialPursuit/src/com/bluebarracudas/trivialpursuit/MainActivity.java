@@ -220,28 +220,9 @@ public class MainActivity extends Activity {
 		}
 		cursor.close();
 	}
-
-	private int getCatColor(String category){
-		for(Category cat : categoryDatabase){
-			if(cat.getName().equals(category)){
-				return cat.getColor();
-			}
-		}
-		if(category.equals("Independence Day Holiday")){
-			return Color.GREEN;
-		}else if(category.equals("Events")){ 
-			return Color.WHITE;			
-		}else if(category.equals("Places")){ 
-			return Color.BLUE;
-		}else if(category.equals("People")){ 
-			return Color.RED;
-		}else{
-			return Color.RED;
-		}
-	}
 	
-	public void onClick_ClearAll(View v) {
-		myDb.deleteAll();
-		categoryDatabase.clear();
-	}
+//	public void onClick_ClearAll(View v) {
+//		myDb.deleteAll();
+//		categoryDatabase.clear();
+//	}
 }
