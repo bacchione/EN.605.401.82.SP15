@@ -83,10 +83,9 @@ public class MainActivity extends Activity {
 		// Not implemented
 	}
 
-	public void saveAndClose(){
+	public void save(){
 		updateDBWithArrayLists();
-		finish();
-		System.exit(0);
+		Toast.makeText(getApplicationContext(), "Saved categories to database!", Toast.LENGTH_SHORT).show();
 	}
 
 	private void updateDBWithArrayLists(){
@@ -139,21 +138,16 @@ public class MainActivity extends Activity {
 
 			startActivity(intent);
 			return true;
+		case R.id.menu_restore_database:
+			myDb.deleteAll();
+			categoryDatabase.clear();
+			categoryDatabase.addAll(DefaultQuestionsGenerator
+					.addDefaultQuestionsGenerator());
+			Toast.makeText(getApplicationContext(), "Restored category defaults to database!", Toast.LENGTH_SHORT).show();
+			save();
+			return true;
 		case R.id.menu_save:
-			saveAndClose();
-			/*String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
-			CSVWriter writer = new CSVWriter(new FileWriter(csv));
-
-			List<String[]> data = new ArrayList<String[]>();
-			data.add(new String[] {"India", "New Delhi"});
-			data.add(new String[] {"United States", "Washington D.C"});
-			data.add(new String[] {"Germany", "Berlin"});
-
-			writer.writeAll(data);
-
-			writer.close();
-			finish();
-			System.exit(0);*/
+			save();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

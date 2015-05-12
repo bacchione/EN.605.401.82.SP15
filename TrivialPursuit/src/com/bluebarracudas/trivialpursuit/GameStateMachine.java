@@ -1094,7 +1094,7 @@ public class GameStateMachine extends Activity implements OnClickListener, OnIte
 	
 	@Override
 	public void onBackPressed() {
-		Toast.makeText(getApplicationContext(), "Data not saved", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Game data not saved", Toast.LENGTH_SHORT).show();
 		this.finish();
 	}
 }

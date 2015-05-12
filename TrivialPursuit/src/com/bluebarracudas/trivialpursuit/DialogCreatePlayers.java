@@ -31,6 +31,8 @@ import com.bluebarracudas.trivialpursuit.Utilities.Utils;
 
 public class DialogCreatePlayers extends ADialogAlert implements OnClickListener, View.OnClickListener {
 
+	private boolean debug = false;
+	
 	public class PlayerCreation implements Comparable{
 		public Player player;
 		public int diceValue;
@@ -253,12 +255,14 @@ public class DialogCreatePlayers extends ADialogAlert implements OnClickListener
 				mTextViewPlayer4.setText(String.valueOf(diceValue));
 			}
 		});
-		
-		// REMOVE THIS WHEN IMPLEMENTED
-		mEditTextPlayer1.setText("John");
-		mEditTextPlayer2.setText("Sam");
-		mEditTextPlayer3.setText("Thomas");
-		mEditTextPlayer4.setText("Tony");
+
+
+		if(debug){
+			mEditTextPlayer1.setText("John");
+			mEditTextPlayer2.setText("Sam");
+			mEditTextPlayer3.setText("Thomas");
+			mEditTextPlayer4.setText("Tony");	
+		}
 
 		builder.setView(view);
 		builder.setTitle("Add Players");
