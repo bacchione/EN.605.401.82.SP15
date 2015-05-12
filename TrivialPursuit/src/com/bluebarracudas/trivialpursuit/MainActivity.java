@@ -85,6 +85,7 @@ public class MainActivity extends Activity {
 
 	public void save(){
 		updateDBWithArrayLists();
+		Toast.makeText(getApplicationContext(), "Saved categories to database!", Toast.LENGTH_SHORT).show();
 	}
 
 	private void updateDBWithArrayLists(){
@@ -142,6 +143,7 @@ public class MainActivity extends Activity {
 			categoryDatabase.clear();
 			categoryDatabase.addAll(DefaultQuestionsGenerator
 					.addDefaultQuestionsGenerator());
+			Toast.makeText(getApplicationContext(), "Restored category defaults to database!", Toast.LENGTH_SHORT).show();
 			save();
 			return true;
 		case R.id.menu_save:

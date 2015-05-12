@@ -29,14 +29,13 @@ import com.bluebarracudas.trivialpursuit.Utilities.Utils;
 public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 
 	private TextView mEditTextQuestion;
-	private EditText mEditTextAnswer;
+	private TextView mEditTextAnswer;
 
 	private Question mQuestion;
 	
 	private ProgressBar mProgress;
 	CountDownTimer mCountDownTimer;
 	int i = 100;
-	private boolean debug = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,11 +55,11 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 		final View view = inflater.inflate(R.layout.question_display_fragment, null, false);
 
 		mEditTextQuestion = (TextView) view.findViewById(R.id.question);
-		mEditTextAnswer = (EditText) view.findViewById(R.id.editTextAnswer);
+		mEditTextAnswer = (TextView) view.findViewById(R.id.editTextAnswer);
 		
 		mProgress = (ProgressBar) view.findViewById(R.id.progressBarTimer);
 		mProgress.setProgress(i);
-		   mCountDownTimer=new CountDownTimer(20000,200) {
+		   mCountDownTimer=new CountDownTimer(30000,300) {
 
 		        @Override
 		        public void onTick(long millisUntilFinished) {
@@ -72,7 +71,6 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 
 		        @Override
 		        public void onFinish() {
-		        //Do what you want 
 		            i--;
 		            mProgress.setProgress(i);
 					final Intent intent = new Intent(Constants.ACTION_GAME_STATE_CHANGE);
@@ -80,22 +78,19 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 					intent.putExtra(Constants.ASK_QUESTION_RESULT, false);
 					getActivity().sendBroadcast(intent);
 					dismiss();
-		            // return from result as wrong
 		        }
 		    };
 		    mCountDownTimer.start();
 
 		mEditTextQuestion.setText(mQuestion.getQuestion());
-		
-		if(debug){
-			mEditTextAnswer.setText(mQuestion.getAnswer());
-		}
+		mEditTextAnswer.setText(mQuestion.getAnswer());
 
 		builder.setView(view);
 		builder.setTitle("Question");
 		builder.setCancelable(false);
-		builder.setPositiveButton("Submit", this);
-
+		builder.setPositiveButton("Correct", this);
+		builder.setNegativeButton("Wrong", this);
+		
 		return builder;
 	}
 
@@ -113,16 +108,15 @@ public class DialogAskQuestion extends ADialogAlert implements OnClickListener {
 			mCountDownTimer.cancel();
 			final Intent intent = new Intent(Constants.ACTION_GAME_STATE_CHANGE);
 			intent.putExtra(Constants.GAME_STATE_TAG, GameStateMachine.GameState.ANSWERED_QUESTION.getStateId());
-
-			if(mEditTextAnswer.getText().toString().equalsIgnoreCase(mQuestion.getAnswer())){
-				// return true
-				intent.putExtra(Constants.ASK_QUESTION_RESULT, true);
-			} else {
-				// return wrong
-				intent.putExtra(Constants.ASK_QUESTION_RESULT, false);
-			}
-			
+			intent.putExtra(Constants.ASK_QUESTION_RESULT, true);
 			getActivity().sendBroadcast(intent);
+			break;
+		case DialogInterface.BUTTON_NEGATIVE:
+			mCountDownTimer.cancel();
+			final Intent intents = new Intent(Constants.ACTION_GAME_STATE_CHANGE);
+			intents.putExtra(Constants.GAME_STATE_TAG, GameStateMachine.GameState.ANSWERED_QUESTION.getStateId());
+			intents.putExtra(Constants.ASK_QUESTION_RESULT, false);
+			getActivity().sendBroadcast(intents);
 			break;
 		}
 	}
